@@ -53,7 +53,8 @@ background-color: black;
 }
 
 .btn{
-    background-color:brown;
+    background-color:rgb(221, 155, 79);
+    color: white;
     font-size: 30pt;
     cursor: pointer;
     font-style:ariel;
@@ -65,4 +66,9 @@ background-color: black;
 .speednbtn{
     text-align: center;
     margin-top:150px;
+   
+}
+#inpSpeed{
+    padding:5px 2px;
+    text-align: center;
 }

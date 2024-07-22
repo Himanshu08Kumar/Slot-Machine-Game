@@ -17,7 +17,7 @@ let values = [
 
 function getRandomValue() {
     
-    return values[Math.floor(Math.random() * 7)]
+    return values[Math.floor(Math.random() * values.length)];
 }
 
 let animationId;
@@ -69,21 +69,30 @@ inpSpeed.onchange = function (ev) {
 btnStop.onclick = function(){
     promiseObj().then(()=>{
 if(value1.innerText ===value2.innerText && value1.innerText ===value3.innerText){
-                    setTimeout(function(){alert('Winner')},200)
+                    setTimeout(function(){
+                        alert('Winner')
+                        btnStart.onclick()
+                    },200)
          }
          else{
-            setTimeout(function(){alert('Better Luck Next Time')},200)
+            setTimeout(function(){
+                alert('Better Luck Next Time')
+                btnStart.onclick()
+            },200)
          }
     })
 }
 var promiseObj = ()=>{
 
-    return  new Promise((resolve , reject)=>{
-        document.documentElement.style.setProperty('--speed',0)
-        inpSpeed.disabled = true; 
-        updateAnimation(0)
-        clearInterval(animationId)
-        resolve();
+        return new Promise((resolve, reject)=>{
+            clearInterval(animationId)  // Stop the current animation
+            resolve();
+        }).then(() => {
+           
+            document.documentElement.style.setProperty('--speed', 0.2);
+            updateAnimation(0.1); 
+            inpSpeed.disabled = true;
+           
     })
 
 }
